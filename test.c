@@ -21,7 +21,7 @@ int	main(void)
 //negative still '-' sign
 //will be overwritten by '+'
 
-//'+' put '+' infront of positive numeric type
+//'+' put '+' front of positive numeric type
 //negative still '-' sign
 
 //if width exist, default put space
