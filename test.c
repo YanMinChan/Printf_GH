@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	printf("%020.2f", 12.345678);
+	printf("%20.2f", 0.000000);
 }
 
 //'-' change everything to left-aligned, 
