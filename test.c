@@ -17,7 +17,7 @@ int	main(void)
 
 //'#' add 0x or 0X to type x and X when non 0
 
-//' ' put nothing infront of positive numeric type
+//' ' put nothing in front of positive numeric type
 //negative still '-' sign
 //will be overwritten by '+'
 

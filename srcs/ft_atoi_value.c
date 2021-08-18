@@ -12,11 +12,13 @@
 
 #include "../includes/ft_printf.h"
 
+//turn char in format to int
+//store prec and width value into t_flag
+//return num of character read in format
+//currently done
+
 int	ft_atoi_value(const char *format, t_flags *flags)
 {
-	//turn char into int
-	//store into t_flags values
-	//return number of format read
 	int	i;
 	int	*value;
 

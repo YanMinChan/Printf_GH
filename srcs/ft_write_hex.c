@@ -13,3 +13,8 @@
 #include "../includes/ft_printf.h"
 //for %x & %X
 //include '#' flag
+
+int	ft_write_hex(unsigned int ui, t_flags *flags)
+{
+	
+}
