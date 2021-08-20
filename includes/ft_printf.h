@@ -3,7 +3,7 @@
 
 # include <unistd.h>
 # include <stdarg.h>
-# include "libft.h"
+# include "../libft/libft.h"
 
 typedef	struct	s_width
 {
@@ -27,5 +27,12 @@ typedef struct	s_flags
 	int	space;
 	int	plus;
 }				t_flags;
+
+t_flags		ft_flag_reset(void);
+int			ft_printf(const char *format, ...);
+int			ft_parse(const char *format, va_list arg);
+int			ft_parse_value(const char *format, t_flags *flags, char flag);
+
+int			ft_write_hex(long long n, t_flags *flags, char type);
 
 #endif

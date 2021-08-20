@@ -11,6 +11,18 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <stdio.h>
+
+static int ft_find(char *types, char input)
+{
+	while(*types)
+	{
+		if (*types == input)
+			return (1);
+		types++;
+	}
+	return (0);
+}
 
 static int	ft_parse_type(char type, t_flags *flags, va_list arg)
 {
@@ -18,56 +30,48 @@ static int	ft_parse_type(char type, t_flags *flags, va_list arg)
 
 	ret = 0;
 	if (type == 'c')
-		ret += ft_blabla;
+		ret += write(1, "ehh", 1);
 	else if (type == 's')
-		ret += ft_blabla;
+		ret += write(1, "ohh", 1);
 	else if (type == 'p')
-		ret += ft_blabla;
+		ret += write(1, "uhh", 1);
 	else if (type == 'd' || type == 'i')
-		ret += ft_blabla;
+		ret += write(1, "ihh", 1);
 	else if (type == 'u')
-		ret += ft_blabla;
+		ret += write(1, "ahh", 1);
 	else if (type == 'x' || type == 'X')
-		ret += ft_blabla;
+		ret += ft_write_hex(va_arg(arg, int), flags, type);
+	else if (type == '%')
+		ret += write(1, "%", 1);
 	return (ret);
 }
 
 static int	ft_parse_flag(const char *format, t_flags *flags)
 {
-	//store flag details to t_flags
 	int	i;
 
-	i = -1;
+	i = 0;
 	while (format[i])
 	{
-		if (!ft_isdigit(format[i + 1]) && !ft_strchr("-0.# +", format[i + 1]))
+		if (!ft_isdigit(format[i]) && !ft_find("-0.# +", format[i]))
 			break ;
-		else if (format[++i] == '-')
+		else if (format[i] == '-')
 			flags->minus = 1;
-		else if (format[++i] == '0')
+		else if (format[i] == '0')
 			flags->zero = 1;
-		else if (format[++i] == '#')
+		else if (format[i] == '#')
 			flags->hash = 1;
-		else if (format[++i] == ' ')
+		else if (format[i] == ' ')
 			flags->space = 1;
-		else if (format[++i] == '+')
+		else if (format[i] == '+')
 			flags->plus = 1;
-		if (ft_isdigit(format[++i]))
-		{
-			flags->width.exist = 1;
-			i += ft_atoi_value(format[i], flags);
-		}
-		else if (format[++i] == '.')
-		{
-			flags->prec.exist = 1;
-			i += ft_atoi_value(format[++i], flags);
-		}
-		//start to save flag data in struct
-		//no need to take care of type data
-		//take in to consideration of what flag will overlap another
-		//flags in fo in test.c
+		if (ft_isdigit(format[i]))
+			i += ft_parse_value(&format[i], flags, 'w') - 1;
+		else if (format[i] == '.')
+			i += ft_parse_value(&format[i + 1], flags, 'p');
+		i++;
 	}
-
+//	printf("%d %d %d\n", flags->width.exist, flags->width.value, i);
 	return (i);
 }
 
@@ -84,21 +88,14 @@ int	ft_parse(const char *format, va_list arg)
 	while (format[i])
 	{
 		flags = ft_flag_reset();
-		if (format[i] == '%' && format[i + 1])
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			i++;
 			i += ft_parse_flag(&format[i], &flags);
-			if (ft_strchr("cspdiuxX", format[i]))
-			{
-				//go to function for va_arg and differentiate type
-				//should return character outputed
+			if (ft_find("cspdiuxX%", format[i]))
 				ret += ft_parse_type((char)format[i], &flags, arg);
-			}
-			else if (format[i])
-			{
-				//take care of double % case
-				ret += write(1, &format[i], 1);
-			}
+//			else if (format[i])
+//				ret += write(1, &format[i], 1);
 		}
 		else if (format[i] != '%')
 			ret += write(1, &format[i], 1);

@@ -11,30 +11,38 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <stdio.h>
 
 //turn char in format to int
 //store prec and width value into t_flag
 //return num of character read in format
 //currently done
 
-int	ft_atoi_value(const char *format, t_flags *flags)
+int	ft_parse_value(const char *format, t_flags *flags, char flag)
 {
 	int	i;
 	int	*value;
 
 	i = 0;
-	if (!ft_isdigit(format[i]))
+	if (!ft_isdigit(*format))
 		return (0);
-	if (format[i - 1] == '.')
+	if (flag == 'p')
+	{
+		flags->prec.exist = 1;
 		value = &(flags->prec.value);
-	else
+	}
+	else if (flag == 'w')
+	{
+		flags->width.exist = 1;
 		value = &(flags->width.value);
+	}
 	while (ft_isdigit(format[i]))
 	{
 		*value *= 10;
 		*value += (char)format[i] - '0';
 		i++;
 	}
+//	printf("%d\n", i);
 	return (i);
 }
 
@@ -42,7 +50,7 @@ int	ft_atoi_value(const char *format, t_flags *flags)
 {
 	t_flags flags;
 	int i;
-	char *s = ".123";
+	char *s = ".-123";
 	flags = ft_flag_reset();
 	i = ft_atoi_value(&s[1], &flags);
 	printf("%d %d\n", flags.prec.value, i);

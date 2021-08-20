@@ -18,7 +18,6 @@
 
 t_flags	ft_flag_reset(void)
 {
-	//reset flags in fo
 	t_flags	flags;
 
 	flags.width.exist = 0;
@@ -47,5 +46,6 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	ft_printf("HELLO\n", "hmm");
+	ft_printf("%#5.3X %#-7.X %%\n", 0, 189);
+	printf("%#5.3X %#-7.X %%\n", 0, 189);
 }
