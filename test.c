@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <unistd.h>
 
 int	main(void)
 {
-	printf("%05x", -151);
+	printf("%+10u", -123);
 }
 
 //'-' change everything to left-aligned, 

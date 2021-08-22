@@ -34,11 +34,11 @@ static int	ft_parse_type(char type, t_flags *flags, va_list arg)
 	else if (type == 's')
 		ret += write(1, "ohh", 1);
 	else if (type == 'p')
-		ret += write(1, "uhh", 1);
+		ret += ft_write_ptr(va_arg(arg, unsigned long long), flags);
 	else if (type == 'd' || type == 'i')
-		ret += write(1, "ihh", 1);
+		ret += ft_write_num(va_arg(arg, int), flags);
 	else if (type == 'u')
-		ret += write(1, "ahh", 1);
+		ret += ft_write_ui(va_arg(arg, unsigned int), flags);
 	else if (type == 'x' || type == 'X')
 		ret += ft_write_hex(va_arg(arg, int), flags, type);
 	else if (type == '%')

@@ -56,6 +56,7 @@ static int	ft_print_hex(char *n2, t_flags *flags, char type)
 		ret += ft_putnchar_fd('0', flags->prec.value, 1);
 		ret += ft_putstr_fd(n2, 1);
 	}
+	return (ret);
 }
 
 int	ft_write_hex(long long n, t_flags *flags, char type)
@@ -68,12 +69,16 @@ int	ft_write_hex(long long n, t_flags *flags, char type)
 		n = 4294967295 + n + 1;
 	if (n == 0)
 		flags->hash = 0;
-	if (type == 'x')
+	if (n == 0 && flags->prec.value == 0)
+		n2 = ft_strdup("");
+	else if (type == 'x')
 		n2 = ft_itoa_base(n, "0123456789abcdef");
-	else
+	else if (type == 'X')
 		n2 = ft_itoa_base(n, "0123456789ABCDEF");
-	if (flags->prec.value > ft_strlen(n2))
+	if (flags->prec.value >= (int)ft_strlen(n2))
 		flags->prec.value = flags->prec.value - ft_strlen(n2);
+	else if (flags->prec.value < (int)ft_strlen(n2))
+		flags->prec.value = 0;
 	flags->width.value = flags->width.value - flags->prec.value - ft_strlen(n2)
 	- (flags->hash * 2);
 //	printf("width:%d prec: %d\n", flags->width.value, flags->prec.value);
