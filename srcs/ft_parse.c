@@ -30,9 +30,9 @@ static int	ft_parse_type(char type, t_flags *flags, va_list arg)
 
 	ret = 0;
 	if (type == 'c')
-		ret += write(1, "ehh", 1);
+		ret += ft_write_char(va_arg(arg, int), flags);
 	else if (type == 's')
-		ret += write(1, "ohh", 1);
+		ret += ft_write_str(va_arg(arg, char *), flags);
 	else if (type == 'p')
 		ret += ft_write_ptr(va_arg(arg, unsigned long long), flags);
 	else if (type == 'd' || type == 'i')

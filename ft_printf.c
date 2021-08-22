@@ -46,6 +46,6 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	ft_printf("func: % 25.20u\n", -189);
-	printf("orig: % 25.20u\n", -189);
+	ft_printf("func: %-+4d\n", 123);
+	printf("orig: %-+4d\n", 123);
 }

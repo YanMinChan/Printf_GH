@@ -3,7 +3,9 @@
 
 int	main(void)
 {
-	printf("%+10u", -123);
+	int	a = 48;
+	printf("%-6c", 'z');
+	write(1, (char *)a, 1);
 }
 
 //'-' change everything to left-aligned, 

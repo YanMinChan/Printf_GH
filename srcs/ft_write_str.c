@@ -10,6 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-//for    %c & %s
+//for %s
+
+int	ft_write_str(char *str, t_flags *flags)
+{
+	int	ret;
+	
+	ret = 0;
+	if (flags->prec.value < (int)ft_strlen(str))
+		flags->width.value = flags->width.value - flags->prec.value;
+	else
+		flags->width.value = flags->width.value - ft_strlen(str);
+	if (flags->minus)
+	{
+		ret += ft_putnstr_fd(str, flags->prec.value, 1);
+		ret += ft_putnchar_fd(' ', flags->width.value, 1);
+	}
+	else if (!flags->minus)
+	{
+		ret += ft_putnchar_fd(' ', flags->width.value, 1);
+		ret += ft_putnstr_fd(str, flags->prec.value, 1);
+	}
+	return (ret);
+}
