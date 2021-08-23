@@ -2,6 +2,7 @@ NAME = libftprintf.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 INCLUDES = includes
+LIBFT = libft
 
 OPTIONS = -I $(INCLUDES)
 
@@ -16,9 +17,9 @@ OBJS = $(FILES:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	make re -C libft
+	make re -C $(LIBFT)
 	$(CC) -c $(FLAGS) $(OPTIONS) $(SRCS)
-	ar rcs $(NAME) $(OBJS)
+	ar rcs $(NAME) $(OBJS) $(LIBFT)/*.o
 
 clean:
 	rm -f $(OBJS)
