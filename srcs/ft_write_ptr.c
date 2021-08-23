@@ -18,7 +18,7 @@
 static int	ft_print_ptr(char *n2, t_flags *flags)
 {
 	int	ret;
-	
+
 	ret = 0;
 	if (flags->minus)
 	{
@@ -37,7 +37,7 @@ static int	ft_print_ptr(char *n2, t_flags *flags)
 
 int	ft_write_ptr(unsigned long long n, t_flags *flags)
 {
-	int	ret;
+	int		ret;
 	char	*n2;
 
 	ret = 0;

@@ -34,8 +34,8 @@ int	ft_nbrlen(long long n, long long baselen)
 char	*ft_itoa_base(long long n, char *base)
 {
 	long long		baselen;
-	char	*n2;
-	int		nbrlen;
+	char			*n2;
+	int				nbrlen;
 
 	baselen = (long long)ft_strlen(base);
 	nbrlen = ft_nbrlen(n, baselen);
@@ -48,7 +48,7 @@ char	*ft_itoa_base(long long n, char *base)
 		n2[nbrlen] = base[n % baselen];
 		n = n / baselen;
 	}
-	return (n2); 
+	return (n2);
 }
 
 /*int	main(void)

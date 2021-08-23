@@ -26,6 +26,26 @@ static int	ft_num_sign(int is_negative, t_flags *flags)
 	return (1);
 }
 
+static int	ft_not_minus(char *n2, t_flags *flags, int is_negative)
+{
+	int	ret;
+
+	ret = 0;
+	if (flags->zero && !flags->prec.exist)
+	{
+		ret += ft_num_sign(is_negative, flags);
+		ret += ft_putnchar_fd('0', flags->width.value, 1);
+	}
+	else
+	{
+		ret += ft_putnchar_fd(' ', flags->width.value, 1);
+		ret += ft_num_sign(is_negative, flags);
+	}
+	ret += ft_putnchar_fd('0', flags->prec.value, 1);
+	ret += ft_putstr_fd(n2, 1);
+	return (ret);
+}
+
 static int	ft_print_num(char *n2, t_flags *flags, int is_negative)
 {
 	int	ret;
@@ -40,28 +60,16 @@ static int	ft_print_num(char *n2, t_flags *flags, int is_negative)
 	}
 	else if (!flags->minus)
 	{
-		if (flags->zero && !flags->prec.exist)
-		{
-			ret += ft_num_sign(is_negative, flags);
-			ret += ft_putnchar_fd('0', flags->width.value, 1);
-		}
-		else
-		{
-			ret += ft_putnchar_fd(' ', flags->width.value, 1);
-			ret += ft_num_sign(is_negative, flags);
-		}
-		ret += ft_putnchar_fd('0', flags->prec.value, 1);
-		ret += ft_putstr_fd(n2, 1);
+		ret += ft_not_minus(n2, flags, is_negative);
 	}
 	return (ret);
 }
 
-
 int	ft_write_num(int n, t_flags *flags)
 {
-	int	ret;
+	int		ret;
 	char	*n2;
-	int	is_negative;
+	int		is_negative;
 
 	ret = 0;
 	is_negative = 0;
@@ -74,7 +82,7 @@ int	ft_write_num(int n, t_flags *flags)
 		n2 = ft_strdup("");
 	else
 		n2 = ft_itoa_base((long long)n, "0123456789");
-	if (flags->prec.value >= (int)ft_strlen(n2))	
+	if (flags->prec.value >= (int)ft_strlen(n2))
 		flags->prec.value = flags->prec.value - ft_strlen(n2);
 	else if (flags->prec.value < (int)ft_strlen(n2))
 		flags->prec.value = 0;

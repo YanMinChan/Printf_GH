@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
-static int ft_find(char *types, char input)
+static int	ft_find(char *types, char input)
 {
-	while(*types)
+	while (*types)
 	{
 		if (*types == input)
 			return (1);
@@ -71,15 +70,14 @@ static int	ft_parse_flag(const char *format, t_flags *flags)
 			i += ft_parse_value(&format[i + 1], flags, 'p');
 		i++;
 	}
-//	printf("%d %d %d\n", flags->width.exist, flags->width.value, i);
 	return (i);
 }
 
 int	ft_parse(const char *format, va_list arg)
 {
 	t_flags	flags;
-	int	i;
-	int	ret;
+	int		i;
+	int		ret;
 
 	i = 0;
 	ret = 0;

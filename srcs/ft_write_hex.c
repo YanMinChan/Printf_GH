@@ -29,6 +29,26 @@ static int	ft_hex_prefix(char type, t_flags *flags)
 	return (2);
 }
 
+static int	ft_not_minus(char *n2, t_flags *flags, char type)
+{
+	int	ret;
+
+	ret = 0;
+	if (flags->zero && !flags->prec.exist)
+	{
+		ret += ft_hex_prefix(type, flags);
+		ret += ft_putnchar ('0', flags->width.value, 1);
+	}
+	else
+	{
+		ret += ft_putnchar_fd(' ', flags->width.value, 1);
+		ret += ft_hex_prefix(type, flags);
+	}
+	ret += ft_putnchar_fd('0', flags->prec.value, 1);
+	ret += ft_putstr_fd(n2, 1);
+	return (ret);
+}
+
 static int	ft_print_hex(char *n2, t_flags *flags, char type)
 {
 	int	ret;
@@ -42,20 +62,7 @@ static int	ft_print_hex(char *n2, t_flags *flags, char type)
 		ret += ft_putnchar_fd(' ', flags->width.value, 1);
 	}
 	else if (!flags->minus)
-	{
-		if (flags->zero && !flags->prec.exist)
-		{
-			ret += ft_hex_prefix(type, flags);
-			ret += ft_putnchar_fd('0', flags->width.value, 1);
-		}
-		else
-		{
-			ret += ft_putnchar_fd(' ', flags->width.value, 1);
-			ret += ft_hex_prefix(type, flags);
-		}
-		ret += ft_putnchar_fd('0', flags->prec.value, 1);
-		ret += ft_putstr_fd(n2, 1);
-	}
+		ret += ft_not_minus(n2, flags, type);
 	return (ret);
 }
 
@@ -80,8 +87,7 @@ int	ft_write_hex(long long n, t_flags *flags, char type)
 	else if (flags->prec.value < (int)ft_strlen(n2))
 		flags->prec.value = 0;
 	flags->width.value = flags->width.value - flags->prec.value - ft_strlen(n2)
-	- (flags->hash * 2);
-//	printf("width:%d prec: %d\n", flags->width.value, flags->prec.value);
+		- (flags->hash * 2);
 	ret += ft_print_hex(n2, flags, type);
 	free(n2);
 	return (ret);

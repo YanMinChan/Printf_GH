@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 //turn char in format to int
 //store prec and width value into t_flag
@@ -42,7 +41,6 @@ int	ft_parse_value(const char *format, t_flags *flags, char flag)
 		*value += (char)format[i] - '0';
 		i++;
 	}
-//	printf("%d\n", i);
 	return (i);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_write_ui.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychan <ychan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/23 13:12:11 by ychan             #+#    #+#             */
+/*   Updated: 2021/08/23 13:12:11 by ychan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
 //no need to include ' ', '+' , '#' flags
@@ -27,8 +39,8 @@ static int	ft_print_ui(char *n2, t_flags *flags)
 
 int	ft_write_ui(unsigned int n, t_flags *flags)
 {
-	int	ret;
-	char *n2;
+	int		ret;
+	char	*n2;
 
 	ret = 0;
 	if (n == 0 && flags->prec.value == 0)

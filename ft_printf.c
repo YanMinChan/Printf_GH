@@ -34,7 +34,7 @@ t_flags	ft_flag_reset(void)
 
 int	ft_printf(const char *format, ...)
 {
-	va_list arg;
+	va_list	arg;
 	int		ret;
 
 	ret = 0;

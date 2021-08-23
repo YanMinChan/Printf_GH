@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ychan <ychan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/23 13:29:03 by ychan             #+#    #+#             */
+/*   Updated: 2021/08/23 13:29:03 by ychan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -5,27 +17,27 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-typedef	struct	s_width
+typedef struct s_width
 {
 	int	exist;
 	int	value;
 }				t_width;
 
-typedef struct	s_prec
+typedef struct s_prec
 {
 	int	exist;
 	int	value;
 }				t_prec;
 
-typedef struct	s_flags
+typedef struct s_flags
 {
 	t_width	width;
 	t_prec	prec;
-	int	minus;
-	int	zero;
-	int	hash;
-	int	space;
-	int	plus;
+	int		minus;
+	int		zero;
+	int		hash;
+	int		space;
+	int		plus;
 }				t_flags;
 
 t_flags		ft_flag_reset(void);
