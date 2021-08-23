@@ -1,14 +1,17 @@
 NAME = libftprintf.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-HEADERS = includes/ft_printf.h libft/libft.h
-OPTIONS = -I $(HEADERS)
+INCLUDES = includes
 
-SRCS = srcs/ft_itoa_base.c srcs/ft_parse_value.c srcs/ft_parse.c srcs/ft_write_char.c \
-		srcs/ft_write_hex.c srcs/ft_write_num.c srcs/ft_write_ptr.c srcs/ft_write_str.c \
-		srcs/ft_write_ui.c ft_printf.c
+OPTIONS = -I $(INCLUDES)
 
-OBJS = $(SRCS:.c=.o)
+FILES = ft_itoa_base.c ft_parse_value.c ft_parse.c ft_write_char.c \
+		ft_write_hex.c ft_write_num.c ft_write_ptr.c ft_write_str.c \
+		ft_write_ui.c ft_printf.c
+
+SRCS = $(addprefix srcs/, $(FILES))
+
+OBJS = $(FILES:.c=.o)
 
 all: $(NAME)
 

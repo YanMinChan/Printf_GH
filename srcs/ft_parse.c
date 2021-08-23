@@ -92,8 +92,8 @@ int	ft_parse(const char *format, va_list arg)
 			i += ft_parse_flag(&format[i], &flags);
 			if (ft_find("cspdiuxX%", format[i]))
 				ret += ft_parse_type((char)format[i], &flags, arg);
-//			else if (format[i])
-//				ret += write(1, &format[i], 1);
+			else if (format[i])
+				ret += write(1, &format[i], 1);
 		}
 		else if (format[i] != '%')
 			ret += write(1, &format[i], 1);

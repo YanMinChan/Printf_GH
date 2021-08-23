@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
+#include "../includes/ft_printf.h"
 
 //handle width, presicion, main function
 //handle '-', '0', ' ', '.', '+' flags
@@ -44,8 +43,8 @@ int	ft_printf(const char *format, ...)
 	return (ret);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	ft_printf("func: %-+4d\n", 123);
 	printf("orig: %-+4d\n", 123);
-}
+}*/

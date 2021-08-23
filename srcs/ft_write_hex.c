@@ -37,7 +37,7 @@ static int	ft_not_minus(char *n2, t_flags *flags, char type)
 	if (flags->zero && !flags->prec.exist)
 	{
 		ret += ft_hex_prefix(type, flags);
-		ret += ft_putnchar ('0', flags->width.value, 1);
+		ret += ft_putnchar_fd('0', flags->width.value, 1);
 	}
 	else
 	{
