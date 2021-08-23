@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
+
 //for %x & %X
 //include '#' flag
 //return num of char write
@@ -80,7 +80,7 @@ int	ft_write_hex(long long n, t_flags *flags, char type)
 		n2 = ft_strdup("");
 	else if (type == 'x')
 		n2 = ft_itoa_base(n, "0123456789abcdef");
-	else if (type == 'X')
+	else
 		n2 = ft_itoa_base(n, "0123456789ABCDEF");
 	if (flags->prec.value >= (int)ft_strlen(n2))
 		flags->prec.value = flags->prec.value - ft_strlen(n2);
