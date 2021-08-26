@@ -45,6 +45,6 @@ int	ft_printf(const char *format, ...)
 
 /*int	main(void)
 {
-	ft_printf("func: %-+4d\n", 123);
-	printf("orig: %-+4d\n", 123);
+	ft_printf("func: %.s \n", "-");
+	printf("orig: %.s \n", "-");
 }*/

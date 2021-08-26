@@ -19,6 +19,8 @@ int	ft_write_str(char *str, t_flags *flags)
 	int	ret;
 
 	ret = 0;
+	if (!flags->prec.exist)
+		flags->prec.value = ft_strlen(str);
 	if (flags->prec.value < (int)ft_strlen(str))
 		flags->width.value = flags->width.value - flags->prec.value;
 	else
