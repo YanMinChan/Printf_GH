@@ -12,14 +12,14 @@
 
 #include "../libft.h"
 
-int	ft_nbrlen(long long n, long long baselen)
+int	ft_nbrlen(unsigned long long n, unsigned long long baselen)
 {
 	int	nbrlen;
 
 	nbrlen = 1;
-	while (n / (int)baselen != 0)
+	while (n / baselen != 0)
 	{
-		n /= (int)baselen;
+		n /= baselen;
 		nbrlen++;
 	}
 	return (nbrlen);

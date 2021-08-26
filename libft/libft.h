@@ -67,8 +67,8 @@ void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-char		*ft_itoa_base(long long n, char *base);
-int			ft_nbrlen(long long n, long long baselen);
+char		*ft_itoa_base(unsigned long long n, char *base);
+int			ft_nbrlen(unsigned long long n, unsigned long long baselen);
 int			ft_putnchar_fd(char c, int n, int fd);
 int			ft_putnstr_fd(char *s, int n, int fd);
 

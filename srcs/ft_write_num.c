@@ -17,12 +17,17 @@
 
 static int	ft_num_sign(int is_negative, t_flags *flags)
 {
-	if (!is_negative && !flags->plus)
+	if (!is_negative && !flags->plus && !flags->space)
 		return (0);
 	else if (is_negative)
 		write(1, "-", 1);
 	else if (!is_negative)
-		write(1, "+", 1);
+	{
+		if (flags->plus)
+			write(1, "+", 1);
+		else if (flags->space)
+			write(1, " ", 1);
+	}
 	return (1);
 }
 
@@ -67,21 +72,21 @@ static int	ft_print_num(char *n2, t_flags *flags, int is_negative)
 
 int	ft_write_num(int n, t_flags *flags)
 {
-	int		ret;
-	char	*n2;
-	int		is_negative;
+	int				ret;
+	char			*n2;
+	int				is_negative;
+	unsigned int	n_cast;
 
 	ret = 0;
 	is_negative = 0;
 	if (n < 0)
 	{
 		is_negative = 1;
-		n *= -1;
+		n_cast = (unsigned int)(-n);
 	}
-	if (n == 0 && flags->prec.value == 0)
-		n2 = ft_strdup("");
 	else
-		n2 = ft_itoa_base((long long)n, "0123456789");
+		n_cast = (unsigned int)n;
+	n2 = ft_itoa_base(n_cast, "0123456789");
 	if (flags->prec.value >= (int)ft_strlen(n2))
 		flags->prec.value = flags->prec.value - ft_strlen(n2);
 	else if (flags->prec.value < (int)ft_strlen(n2))

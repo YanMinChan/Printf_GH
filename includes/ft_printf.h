@@ -13,6 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
 # include "../libft/libft.h"
@@ -45,8 +46,8 @@ int			ft_printf(const char *format, ...);
 int			ft_parse(const char *format, va_list arg);
 int			ft_parse_value(const char *format, t_flags *flags, char flag);
 
-int			ft_write_hex(long long n, t_flags *flags, char type);
-int			ft_write_ptr(unsigned long long n, t_flags *flags);
+int			ft_write_hex(unsigned int n, t_flags *flags, char type);
+int			ft_write_ptr(long long n, t_flags *flags);
 int			ft_write_ui(unsigned int n, t_flags *flags);
 int			ft_write_num(int n, t_flags *flags);
 int			ft_write_str(char *str, t_flags *flags);

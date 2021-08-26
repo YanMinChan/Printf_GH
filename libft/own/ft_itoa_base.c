@@ -12,13 +12,13 @@
 
 #include "../libft.h"
 
-char	*ft_itoa_base(long long n, char *base)
+char	*ft_itoa_base(unsigned long long n, char *base)
 {
-	long long		baselen;
-	char			*n2;
-	int				nbrlen;
+	unsigned long long		baselen;
+	char					*n2;
+	int						nbrlen;
 
-	baselen = (long long)ft_strlen(base);
+	baselen = (unsigned long long)ft_strlen(base);
 	nbrlen = ft_nbrlen(n, baselen);
 	n2 = (char *)malloc(sizeof(char) * nbrlen + 1);
 	if (!n2)

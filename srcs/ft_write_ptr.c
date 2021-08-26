@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <limits.h>
 
 //for %p
 // %p doesn't work with '0', '.', '#', ' ' and + flags
@@ -35,13 +36,15 @@ static int	ft_print_ptr(char *n2, t_flags *flags)
 	return (ret);
 }
 
-int	ft_write_ptr(unsigned long long n, t_flags *flags)
+int	ft_write_ptr(long long n, t_flags *flags)
 {
 	int		ret;
 	char	*n2;
 
 	ret = 0;
-	n2 = ft_itoa_base((long long)n, "0123456789abcdef");
+	if (n < 0)
+		n = ULLONG_MAX + n + 1;
+	n2 = ft_itoa_base(n, "0123456789abcdef");
 	flags->width.value = flags->width.value - ft_strlen(n2) - 2;
 	ret += ft_print_ptr(n2, flags);
 	free(n2);

@@ -23,8 +23,6 @@ int	ft_parse_value(const char *format, t_flags *flags, char flag)
 	int	*value;
 
 	i = 0;
-	if (!ft_isdigit(*format))
-		return (0);
 	if (flag == 'p')
 	{
 		flags->prec.exist = 1;

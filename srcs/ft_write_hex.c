@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <limits.h>
 
 //for %x & %X
 //include '#' flag
@@ -66,19 +67,17 @@ static int	ft_print_hex(char *n2, t_flags *flags, char type)
 	return (ret);
 }
 
-int	ft_write_hex(long long n, t_flags *flags, char type)
+int	ft_write_hex(unsigned int n, t_flags *flags, char type)
 {
 	int		ret;
 	char	*n2;
 
 	ret = 0;
 	if (n < 0)
-		n = 4294967295 + n + 1;
+		n = ULONG_MAX + n + 1;
 	if (n == 0)
 		flags->hash = 0;
-	if (n == 0 && flags->prec.value == 0)
-		n2 = ft_strdup("");
-	else if (type == 'x')
+	if (type == 'x')
 		n2 = ft_itoa_base(n, "0123456789abcdef");
 	else
 		n2 = ft_itoa_base(n, "0123456789ABCDEF");

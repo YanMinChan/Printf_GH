@@ -43,10 +43,7 @@ int	ft_write_ui(unsigned int n, t_flags *flags)
 	char	*n2;
 
 	ret = 0;
-	if (n == 0 && flags->prec.value == 0)
-		n2 = ft_strdup("");
-	else
-		n2 = ft_itoa_base((long long)n, "0123456789");
+	n2 = ft_itoa_base(n, "0123456789");
 	if (flags->prec.value >= (int)ft_strlen(n2))
 		flags->prec.value = flags->prec.value - ft_strlen(n2);
 	else if (flags->prec.value < (int)ft_strlen(n2))
