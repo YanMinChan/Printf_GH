@@ -6,7 +6,7 @@ LIBFT = libft
 
 OPTIONS = -I $(INCLUDES)
 
-FILES = ft_parse_value.c ft_parse.c ft_write_char.c \
+FILES = ft_parse_value.c ft_parse.c ft_write_char.c ft_write_pct.c\
 		ft_write_hex.c ft_write_num.c ft_write_ptr.c ft_write_str.c \
 		ft_write_ui.c ft_printf.c
 

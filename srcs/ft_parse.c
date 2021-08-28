@@ -41,7 +41,7 @@ static int	ft_parse_type(char type, t_flags *flags, va_list arg)
 	else if (type == 'x' || type == 'X')
 		ret += ft_write_hex(va_arg(arg, int), flags, type);
 	else if (type == '%')
-		ret += write(1, "%", 1);
+		ret += ft_write_pct(flags);
 	return (ret);
 }
 
@@ -81,8 +81,6 @@ int	ft_parse(const char *format, va_list arg)
 
 	i = 0;
 	ret = 0;
-	if (!*format)
-		return (0);
 	while (format[i])
 	{
 		flags = ft_flag_reset();
@@ -90,10 +88,12 @@ int	ft_parse(const char *format, va_list arg)
 		{
 			i++;
 			i += ft_parse_flag(&format[i], &flags);
-			if (ft_find("cspdiuxX%", format[i]))
+			if (ft_find("cspdiuxX%", format[i]) && format[i])
 				ret += ft_parse_type((char)format[i], &flags, arg);
 			else if (format[i])
 				ret += write(1, &format[i], 1);
+			else
+				break ;
 		}
 		else if (format[i] != '%')
 			ret += write(1, &format[i], 1);

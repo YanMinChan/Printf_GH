@@ -27,7 +27,7 @@ static int	ft_print_ui(char *n2, t_flags *flags)
 	}
 	else if (!flags->minus)
 	{
-		if (flags->zero)
+		if (flags->zero && !flags->prec.exist)
 			ret += ft_putnchar_fd('0', flags->width.value, 1);
 		else
 			ret += ft_putnchar_fd(' ', flags->width.value, 1);
@@ -43,7 +43,10 @@ int	ft_write_ui(unsigned int n, t_flags *flags)
 	char	*n2;
 
 	ret = 0;
-	n2 = ft_itoa_base(n, "0123456789");
+	if (!flags->prec.value && n == 0 && flags->prec.exist)
+		n2 = ft_strdup("");
+	else
+		n2 = ft_itoa_base(n, "0123456789");
 	if (flags->prec.value >= (int)ft_strlen(n2))
 		flags->prec.value = flags->prec.value - ft_strlen(n2);
 	else if (flags->prec.value < (int)ft_strlen(n2))

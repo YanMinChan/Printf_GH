@@ -52,4 +52,6 @@ int			ft_write_ui(unsigned int n, t_flags *flags);
 int			ft_write_num(int n, t_flags *flags);
 int			ft_write_str(char *str, t_flags *flags);
 int			ft_write_char(int a, t_flags *flags);
+int			ft_write_pct(t_flags *flags);
+
 #endif

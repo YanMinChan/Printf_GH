@@ -77,7 +77,9 @@ int	ft_write_hex(unsigned int n, t_flags *flags, char type)
 		n = ULONG_MAX + n + 1;
 	if (n == 0)
 		flags->hash = 0;
-	if (type == 'x')
+	if (!flags->prec.value && n == 0 && flags->prec.exist)
+		n2 = ft_strdup("");
+	else if (type == 'x')
 		n2 = ft_itoa_base(n, "0123456789abcdef");
 	else
 		n2 = ft_itoa_base(n, "0123456789ABCDEF");
