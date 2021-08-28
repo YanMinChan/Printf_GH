@@ -24,6 +24,7 @@ static int	ft_print_ptr(char *n2, t_flags *flags)
 	if (flags->minus)
 	{
 		ret += write(1, "0x", 2);
+		ret += ft_putnchar_fd('0', flags->prec.value, 1);
 		ret += ft_putstr_fd(n2, 1);
 		ret += ft_putnchar_fd(' ', flags->width.value, 1);
 	}
@@ -31,6 +32,7 @@ static int	ft_print_ptr(char *n2, t_flags *flags)
 	{
 		ret += ft_putnchar_fd(' ', flags->width.value, 1);
 		ret += write(1, "0x", 2);
+		ret += ft_putnchar_fd('0', flags->prec.value, 1);
 		ret += ft_putstr_fd(n2, 1);
 	}
 	return (ret);
@@ -44,7 +46,14 @@ int	ft_write_ptr(long long n, t_flags *flags)
 	ret = 0;
 	if (n < 0)
 		n = ULLONG_MAX + n + 1;
-	n2 = ft_itoa_base(n, "0123456789abcdef");
+	if (!flags->prec.value && n == 0 && flags->prec.exist)
+		n2 = ft_strdup("");
+	else
+		n2 = ft_itoa_base(n, "0123456789abcdef");
+	if (flags->prec.value > (int)ft_strlen(n2))
+		flags->prec.value = flags->prec.value - ft_strlen(n2);
+	else
+		flags->prec.value = 0;
 	flags->width.value = flags->width.value - ft_strlen(n2) - 2;
 	ret += ft_print_ptr(n2, flags);
 	free(n2);

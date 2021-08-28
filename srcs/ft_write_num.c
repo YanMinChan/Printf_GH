@@ -70,6 +70,17 @@ static int	ft_print_num(char *n2, t_flags *flags, int is_negative)
 	return (ret);
 }
 
+static char	*ft_assign_n2(unsigned int n_cast, t_flags *flags)
+{
+	char	*n2;
+
+	if (!flags->prec.value && n_cast == 0 && flags->prec.exist)
+		n2 = ft_strdup("");
+	else
+		n2 = ft_itoa_base(n_cast, "0123456789");
+	return (n2);
+}
+
 int	ft_write_num(int n, t_flags *flags)
 {
 	int				ret;
@@ -86,7 +97,7 @@ int	ft_write_num(int n, t_flags *flags)
 	}
 	else
 		n_cast = (unsigned int)n;
-	n2 = ft_itoa_base(n_cast, "0123456789");
+	n2 = ft_assign_n2(n_cast, flags);
 	if (flags->prec.value >= (int)ft_strlen(n2))
 		flags->prec.value = flags->prec.value - ft_strlen(n2);
 	else if (flags->prec.value < (int)ft_strlen(n2))

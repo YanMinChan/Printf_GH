@@ -33,7 +33,7 @@ int	ft_parse_value(const char *format, t_flags *flags, char flag)
 		flags->width.exist = 1;
 		value = &(flags->width.value);
 	}
-	while (ft_isdigit(format[i]))
+	while (ft_isdigit(format[i]) && format[i])
 	{
 		*value *= 10;
 		*value += (char)format[i] - '0';

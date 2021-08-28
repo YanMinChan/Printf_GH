@@ -19,6 +19,8 @@ int	ft_write_str(char *str, t_flags *flags)
 	int	ret;
 
 	ret = 0;
+	if (!str)
+		str = "(null)";
 	if (!flags->prec.exist)
 		flags->prec.value = ft_strlen(str);
 	if (flags->prec.value < (int)ft_strlen(str))
@@ -32,7 +34,10 @@ int	ft_write_str(char *str, t_flags *flags)
 	}
 	else if (!flags->minus)
 	{
-		ret += ft_putnchar_fd(' ', flags->width.value, 1);
+		if (flags->zero)
+			ret += ft_putnchar_fd('0', flags->width.value, 1);
+		else
+			ret += ft_putnchar_fd(' ', flags->width.value, 1);
 		ret += ft_putnstr_fd(str, flags->prec.value, 1);
 	}
 	return (ret);
